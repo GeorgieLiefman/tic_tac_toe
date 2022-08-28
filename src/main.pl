@@ -42,3 +42,14 @@ sub print_board {
 		$str{leading_space}, $str{cells}(val(0), val(1), val(2)),
 		$str{leading_space}, $str{floor}, "\n";
 }
+
+sub prompt {
+	my $res;
+	do {
+		print $str{prompt}($who_has_turn);
+		$res = scalar(<>);  chomp($res);
+	} until (exists $valid_input{$res});
+	delete $valid_input{$res};
+	$cells[$res - 1] = $who_has_turn;
+	$who_has_turn = 2 - $who_has_turn + 1;  # swap 1 and 2
+}
