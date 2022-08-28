@@ -6,7 +6,7 @@ my @cells;
 
 my %valid_input = map { $_ => undef } (1..9);
 
-my $turn = 1;  # 1 or 2, for player 1 or 2, respectively
+my $who_has_turn = 1;  # 1 or 2, for player 1 or 2, respectively
 
 my %str = (
 	prompt => sub { "              Player $_[0]'s turn: " },
@@ -22,6 +22,8 @@ my %str = (
 	1 => "\e[1;34mO\e[m",
 	2 => "\e[1;33mX\e[m",
 );
+
+while(1) { print_board(); prompt(); check_winner(); }
 
 sub print_board {
 	clear_screen();
