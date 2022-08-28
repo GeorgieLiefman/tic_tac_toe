@@ -70,3 +70,9 @@ sub check_winner {
 	# if no winner and board is full:
 	else { if (is_board_full()) { finish($str{tie}) } }
 }
+
+sub check_cells {
+	my ($a, $b, $c) = ($cells[$_[0]], $cells[$_[1]], $cells[$_[2]]);
+	return 0 unless (defined $a && defined $b && defined $c);
+	return ($a == $b && $b == $c)? $a : 0;
+}
