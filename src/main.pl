@@ -76,3 +76,7 @@ sub check_cells {
 	return 0 unless (defined $a && defined $b && defined $c);
 	return ($a == $b && $b == $c)? $a : 0;
 }
+
+sub finish { print_board(); printf $_[0]; exit(); } #prompt_new_game() #TODO
+sub is_board_full { scalar(grep { defined $_ } @cells) == 9 }
+sub clear_screen { print "\e[2J\e[H" }
