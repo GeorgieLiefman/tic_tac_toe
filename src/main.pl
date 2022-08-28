@@ -53,3 +53,20 @@ sub prompt {
 	$cells[$res - 1] = $who_has_turn;
 	$who_has_turn = 2 - $who_has_turn + 1;  # swap 1 and 2
 }
+
+sub check_winner {
+	my $w;
+	# rows:
+	if    ($w = check_cells(0, 1, 2)) { finish($str{win}($w)) }
+	elsif ($w = check_cells(3, 4, 5)) { finish($str{win}($w)) }
+	elsif ($w = check_cells(6, 7, 8)) { finish($str{win}($w)) }
+	# columns:
+	elsif ($w = check_cells(0, 3, 6)) { finish($str{win}($w)) }
+	elsif ($w = check_cells(1, 4, 7)) { finish($str{win}($w)) }
+	elsif ($w = check_cells(2, 5, 8)) { finish($str{win}($w)) }
+	# diagonals:
+	elsif ($w = check_cells(0, 4, 8)) { finish($str{win}($w)) }
+	elsif ($w = check_cells(2, 4, 6)) { finish($str{win}($w)) }
+	# if no winner and board is full:
+	else { if (is_board_full()) { finish($str{tie}) } }
+}
